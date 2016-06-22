@@ -1,0 +1,7 @@
+New log file opened at Tue Jun 21 20:22:28 SGT 2016 by 1060@Kunals-MBP
+Taking next connection to: 50880
+New client attempting to connect on port: 50881-50880
+  Address = /192.168.1.141:50880
+This client on port 50881 has uuid 361a078f-cef8-4f73-b093-ff686e4843a4 configName activator humanReadableName Activator protocolVersion 3 featureTags Vector()
+Connected Clients: activator-361a078f-cef8-4f73-b093-ff686e4843a4
+Taking next connection to: 50880
