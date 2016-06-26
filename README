@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/kunalkanojia/react-play-eventsourcing.svg?branch=master)](https://travis-ci.org/kunalkanojia/react-play-eventsourcing)
 
 Play framework event sourcing example.
 
