@@ -104,7 +104,7 @@ class TradeController @Inject()(
             tradeService.retrieveTrade(user, tradeId).flatMap {
               case Some(trade) =>
                 tradeService.updateTrade(user, trade, data).map {
-                  case Some(trade) => Redirect(TradeController.dashboard()).flashing("success" -> "Trade Created")
+                  case Some(savedTrade) => Redirect(TradeController.dashboard()).flashing("success" -> "Trade Updated")
                   case None => Redirect(TradeController.dashboard()).flashing("error" -> "Oops, check log")
                 }
               case None =>

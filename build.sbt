@@ -7,8 +7,7 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala, SbtWeb)
 scalaVersion := "2.11.8"
 
 resolvers += "Eventuate Releases" at "https://dl.bintray.com/rbmhtechnology/maven"
-
-resolvers += "Typesafe Ivy Releases" at "https://repo.typesafe.com/typesafe/ivy-releases"
+resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 javaOptions in Test += "-Dconfig.resource=test.conf"
 
@@ -37,7 +36,3 @@ libraryDependencies ++= Seq(
 )
 
 routesGenerator := InjectedRoutesGenerator
-
-resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
-
-fork in run := false
