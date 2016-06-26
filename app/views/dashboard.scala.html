@@ -1,10 +1,49 @@
-@* dashboard Template File *@
-@(webJarAssets: WebJarAssets)
+@import com.kkanojia.rpe.models.Trade
+@import com.kkanojia.rpe.utils.Constants._
+@(webJarAssets: WebJarAssets, email: Option[String], trades: Seq[Trade])(implicit flash: Flash)
 
-@main(webJarAssets) {
+@main(webJarAssets, email) {
 
-  <div class="row demo-row">
-    <div id="content"></div>
+  @flash.get("success").map { message =>
+    <div class="alert alert-success" role="alert">
+      @message
+    </div>
+  }
+
+  <div class="row">
+    <div class="col-md-6">
+    <h3>Trades</h3>
+      </div>
+    <div class="col-md-6">
+      <a class="btn btn-primary" id="add" href="@routes.TradeController.create()">Add New Trade</a>
+      </div>
   </div>
+
+  <table class="table table-bordered table-striped table-hover">
+    <thead>
+      <tr>
+        <th class="info">Trade ID</th>
+        <th class="info">Trade Date</th>
+        <th class="info">Buy/Sell</th>
+        <th class="info">Asset</th>
+        <th class="info">Quantity</th>
+        <th class="info">Price</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    @trades.map { trade =>
+      <tr>
+        <td><a href="@routes.TradeController.edit(trade.id.toString)">@trade.id.toString</a></td>
+        <td> @trade.tradeDate.toString("dd/MM/yyyy")</td>
+        <td> @trade.buySell</td>
+        <td> @assetsMap.get(trade.assetId).getOrElse("")</td>
+        <td> @trade.quantity</td>
+        <td> @trade.price</td>
+      </tr>
+    }
+
+    </tbody>
+  </table>
 
 }

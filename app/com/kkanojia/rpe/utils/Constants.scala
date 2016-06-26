@@ -1,0 +1,7 @@
+package com.kkanojia.rpe.utils
+
+object Constants {
+
+  val assetsMap = Map(1 -> "TWLO", 2 -> "TWTR", 3 -> "TEAM")
+
+}
