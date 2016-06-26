@@ -1,0 +1,46 @@
+@import com.kkanojia.rpe.forms.TradeForm.TradeFormData
+
+@import routes._
+@import b3.vertical.fieldConstructor
+@(webJarAssets: WebJarAssets, email: Option[String], tradeForm: Form[TradeFormData], tradeId: Option[String] = None)(implicit messages: Messages, flash: Flash)
+
+@buySell = @{
+  Seq("B" -> "Buy", "S" -> "Sell")
+}
+
+@assets = @{
+  Seq("1" -> "TWLO - Twilio Inc", "2" -> "TWTR - Twitter Inc", "3" -> "TEAM - Atlassian Corporation PLC")
+}
+
+@formAction = @{
+  if(tradeId.isDefined) TradeController.handleEdit(tradeId.get) else TradeController.handleCreate()
+}
+
+@main(webJarAssets) {
+
+  <div class="page-header">
+    <h3>Create a new trade.</h3>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+    @b3.form(formAction) {
+
+      @b3.text(tradeForm("trade_date"), '_label -> "Date", 'placeholder -> "dd/MM/yyyy")
+
+      @b3.select(tradeForm("buy_sell"), options = buySell, '_label -> "Buy/Sell")
+
+      @b3.select(tradeForm("asset_id"), options = assets, '_label -> "Asset")
+
+      @b3.text(tradeForm("quantity"), '_label -> "Quantity", 'placeholder -> "0")
+
+      @b3.text(tradeForm("price"), '_label -> "Price", 'placeholder -> "0")
+
+      @b3.submit('class -> "btn btn-primary") {
+        <span class="glyphicon glyphicon-ok"></span> @tradeId.fold("Submit")(_ => "Amend")
+      }
+    }
+    </div>
+  </div>
+}

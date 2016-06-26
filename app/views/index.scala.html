@@ -1,12 +1,53 @@
-@(webJarAssets: WebJarAssets)
+
+@import b3.vertical.fieldConstructor
+
+@(webJarAssets: WebJarAssets, createForm: Form[String], loginForm: Form[String])(implicit messages: Messages, flash: Flash)
 
 @main(webJarAssets) {
 
-  <div class="container">
-    <div class="demo-headline">
-        <div class="logo"></div>
-         Play React Seed
-        <a href="@routes.HomeController.dashboard">Dashboard</a>
+  @flash.get("error").map { message =>
+    <div class="alert alert-danger" role="alert">
+      @message
+    </div>
+  }
+
+  <div class="page-header">
+    <h3>Create user and get started.</h3>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+    @b3.form(routes.HomeController.handleUser) {
+      @b3.email(createForm("user_email"),
+        '_label -> "User Email",
+        'placeholder -> "example@mail.com",
+        '_showIconOnError -> true
+      )
+
+      @b3.submit('class -> "btn btn-primary"){ <span class="glyphicon glyphicon-ok"></span> Create }
+    }
     </div>
   </div>
+
+  <div class="page-header">
+    <h3>Returning user view your trades here</h3>
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-6">
+    @b3.form(routes.HomeController.handleLogin) {
+      @b3.email(loginForm("user_email"),
+        '_label -> "User Email",
+        'placeholder -> "example@mail.com",
+        '_showIconOnError -> true
+      )
+
+      @b3.submit('class -> "btn btn-primary"){ <span class="glyphicon glyphicon-ok"></span> Login }
+    }
+    </div>
+  </div>
+
+
 }
