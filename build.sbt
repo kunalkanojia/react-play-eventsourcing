@@ -8,13 +8,13 @@ scalaVersion := "2.11.8"
 
 resolvers += "Eventuate Releases" at "https://dl.bintray.com/rbmhtechnology/maven"
 
+resolvers += "Typesafe Ivy Releases" at "https://repo.typesafe.com/typesafe/ivy-releases"
+
 javaOptions in Test += "-Dconfig.resource=test.conf"
 
 val akkaVersion = "2.4.7"
 
 libraryDependencies ++= Seq(
-  jdbc,
-  cache,
   ws,
 
   //Eventuate
