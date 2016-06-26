@@ -10,17 +10,12 @@ resolvers += "Eventuate Releases" at "https://dl.bintray.com/rbmhtechnology/mave
 
 javaOptions in Test += "-Dconfig.resource=test.conf"
 
+val akkaVersion = "2.4.7"
+
 libraryDependencies ++= Seq(
   jdbc,
   cache,
   ws,
-  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test
-)
-
-libraryDependencies ++= Seq(
-
-  "com.typesafe.akka" %% "akka-multi-node-testkit" % "2.4.4" % Test,
-  "com.typesafe.akka" %% "akka-testkit" % "2.4.4" % Test,
 
   //Eventuate
   "com.rbmhtechnology" %% "eventuate-core" % "0.7.1",
@@ -28,10 +23,17 @@ libraryDependencies ++= Seq(
 
   //JSON
   "org.json4s" %% "json4s-jackson" % "3.3.0",
+  "org.json4s" %% "json4s-ext" % "3.3.0",
 
   //UI
   "org.webjars" %% "webjars-play" % "2.5.0-2",
-  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3"
+  "com.adrianhurt" %% "play-bootstrap" % "1.0-P25-B3",
+
+  //TEST
+  "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
+
+  "com.typesafe.akka" %% "akka-multi-node-testkit" % akkaVersion % Test,
+  "com.typesafe.akka" %% "akka-testkit" % akkaVersion % Test
 )
 
 routesGenerator := InjectedRoutesGenerator

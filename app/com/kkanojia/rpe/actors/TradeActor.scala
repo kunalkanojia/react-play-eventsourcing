@@ -36,7 +36,7 @@ class TradeActor(override val id: String,
   override def onCommand: Receive = {
 
     case CreateTrade(trade) =>
-      persist(TradeCreated(trade), Set(managerId)) {
+      persist(TradeCreated(trade), Set(managerId, CumulativeTradeViewActor.ID)) {
         case Success(evt) =>
           sender() ! CreateTradeSuccess(trade)
         case Failure(cause) =>
@@ -44,7 +44,7 @@ class TradeActor(override val id: String,
       }
 
     case UpdateTrade(trade) =>
-      persist(TradeUpdated(trade), Set(managerId)) {
+      persist(TradeUpdated(trade), Set(managerId, CumulativeTradeViewActor.ID)) {
         case Success(evt) =>
           sender() ! UpdateTradeSuccess(trade)
         case Failure(cause) =>

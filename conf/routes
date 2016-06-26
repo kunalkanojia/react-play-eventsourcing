@@ -4,6 +4,8 @@
 
 GET     /                           controllers.HomeController.index
 
+GET     /ws                         controllers.TradeWSController.ws
+
 POST    /create                     controllers.HomeController.handleUser
 POST    /login                      controllers.HomeController.handleLogin
 

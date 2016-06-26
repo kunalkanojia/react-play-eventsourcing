@@ -1,12 +1,8 @@
 package com.kkanojia.rpe.actors
 
-import java.util.UUID
-
-import akka.actor.{ActorRef, Props}
 import scala.collection._
 
-import com.kkanojia.rpe.actors.TradeActor.UpdateTrade
-import com.kkanojia.rpe.models.User
+import akka.actor.{ActorRef, Props}
 import com.kkanojia.rpe.utils.exceptions.UserPresentException
 import com.rbmhtechnology.eventuate.EventsourcedView
 
@@ -22,8 +18,8 @@ class UserManager(override val id: String,
                   override val aggregateId: Option[String],
                   override val eventLog: ActorRef) extends EventsourcedView {
 
-  import UserManager._
   import UserActor._
+  import UserManager._
 
   private val usersInSystem = mutable.Map[String, String]()
 

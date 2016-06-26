@@ -10,7 +10,6 @@ import org.json4s.DefaultFormats
 import org.json4s.jackson.Serialization._
 
 import play.api.i18n.{I18nSupport, MessagesApi}
-import play.api.libs.json.Json
 import play.api.mvc.{Action, Controller}
 
 import controllers.routes._
@@ -83,7 +82,7 @@ class TradeController @Inject()(
             val formData = TradeFormData(trade.tradeDate, trade.buySell, trade.assetId, trade.quantity, trade.price)
             Ok(views.html.createTrade(webJarAssets, Some(user.email), tradeForm.fill(formData), Some(trade.id.toString)))
 
-          case None =>  Redirect(TradeController.dashboard()).flashing("error" -> "Unable to find trade.")
+          case None => Redirect(TradeController.dashboard()).flashing("error" -> "Unable to find trade.")
         }
 
       case None =>
@@ -102,7 +101,7 @@ class TradeController @Inject()(
             Ok(views.html.createTrade(webJarAssets, Some(user.email), errorForm, Some(tradeId)))
           },
           data => {
-            tradeService.retrieveTrade(user, tradeId).flatMap{
+            tradeService.retrieveTrade(user, tradeId).flatMap {
               case Some(trade) =>
                 tradeService.updateTrade(user, trade, data).map {
                   case Some(trade) => Redirect(TradeController.dashboard()).flashing("success" -> "Trade Created")
