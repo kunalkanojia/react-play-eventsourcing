@@ -13,15 +13,15 @@ object TradeActor {
   case class CreateTrade(trade: Trade)
   case class UpdateTrade(trade: Trade)
 
-  //Events
-  case class TradeCreated(trade: Trade)
-  case class TradeUpdated(trade: Trade)
-
   //Replies
   case class CreateTradeSuccess(trade: Trade)
   case class CreateTradeFailure(cause: Throwable)
   case class UpdateTradeSuccess(trade: Trade)
   case class UpdateTradeFailure(cause: Throwable)
+
+  //Events
+  case class TradeCreated(trade: Trade)
+  case class TradeUpdated(trade: Trade)
 
 }
 
