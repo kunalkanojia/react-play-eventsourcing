@@ -1,11 +1,10 @@
-package com.kkanojia.rpe.actors
+package com.kkanojia.example.actors
 
 import scala.util.{Failure, Success}
 
 import akka.actor.{ActorRef, Props}
-import com.kkanojia.rpe.actors.UserActor._
-import com.kkanojia.rpe.models.User
-import com.kkanojia.rpe.utils.exceptions.UserPresentException
+import com.kkanojia.example.models.User
+import com.kkanojia.example.utils.exceptions.UserPresentException
 import com.rbmhtechnology.eventuate.EventsourcedActor
 
 object UserActor {
@@ -26,10 +25,17 @@ object UserActor {
 
 }
 
+/**
+ * Event sourced actor to persist user events to event log
+ *
+ */
 class UserActor(override val id: String,
                 override val aggregateId: Option[String],
-                override val eventLog: ActorRef)
+                override val eventLog: ActorRef,
+                val managerId: Option[String] = None)
   extends EventsourcedActor {
+
+  import UserActor._
 
   private var userOpt: Option[User] = None
 
@@ -39,7 +45,7 @@ class UserActor(override val id: String,
       sender() ! UserCreationFailed(UserPresentException)
 
     case CreateUser(user) =>
-      persist(UserCreated(user), Set(UserManager.ID)) {
+      persist(UserCreated(user), Set(managerId.getOrElse(""))) {
         case Success(event) =>
           sender() ! UserCreationSuccess(user)
         case Failure(error) =>

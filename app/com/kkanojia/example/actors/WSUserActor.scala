@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.actors
+package com.kkanojia.example.actors
 
 import javax.inject._
 import scala.concurrent.Await
@@ -8,8 +8,8 @@ import akka.actor._
 import akka.event.LoggingReceive
 import akka.util.Timeout
 import com.google.inject.assistedinject.Assisted
-import com.kkanojia.rpe.actors.CumulativeTradeViewActor.WatchTrades
-import com.kkanojia.rpe.actors.TradeActor.{TradeCreated, TradeUpdated}
+import CumulativeTradeViewActor.WatchTrades
+import TradeActor.{TradeCreated, TradeUpdated}
 import org.json4s.DefaultFormats
 import org.json4s.ext.{JavaTypesSerializers, JodaTimeSerializers}
 import org.json4s.jackson.Serialization._

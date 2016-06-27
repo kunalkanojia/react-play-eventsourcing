@@ -1,7 +1,6 @@
-@import com.kkanojia.rpe.forms.TradeForm.TradeFormData
-
 @import routes._
 @import b3.vertical.fieldConstructor
+@import com.kkanojia.example.forms.TradeForm._
 @(webJarAssets: WebJarAssets, email: Option[String], tradeForm: Form[TradeFormData], tradeId: Option[String] = None)(implicit messages: Messages, flash: Flash)
 
 @buySell = @{

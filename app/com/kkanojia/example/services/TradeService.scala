@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.services
+package com.kkanojia.example.services
 
 import javax.inject.Inject
 import scala.concurrent.duration._
@@ -7,11 +7,13 @@ import scala.concurrent.{ExecutionContext, Future}
 import akka.actor.{ActorSelection, ActorSystem}
 import akka.pattern.ask
 import akka.util.Timeout
-import com.kkanojia.rpe.actors.TradeActor._
-import com.kkanojia.rpe.actors.TradeManager.{FindTrade, FindTradeSuccess, RetrieveTrades, RetrieveTradesSuccess}
-import com.kkanojia.rpe.actors.UserManager
-import com.kkanojia.rpe.forms.TradeForm.TradeFormData
-import com.kkanojia.rpe.models.{Trade, User}
+import com.kkanojia.example.actors.{TradeActor, TradeManager, UserManager}
+import TradeActor._
+import TradeManager.{FindTrade, FindTradeSuccess, RetrieveTrades, RetrieveTradesSuccess}
+import com.kkanojia.example.forms.TradeForm
+import TradeForm.TradeFormData
+import com.kkanojia.example.models.{Trade, User}
+import com.kkanojia.example.models.Trade
 
 class TradeService @Inject()(system: ActorSystem)(implicit ec: ExecutionContext) {
 

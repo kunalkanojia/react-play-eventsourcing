@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.models
+package com.kkanojia.example.models
 
 import java.util.UUID
 
@@ -8,7 +8,6 @@ case class User(
                )
 
 object User {
-
 
   def apply(email: String): User = {
     User(UUID.randomUUID().toString, email)

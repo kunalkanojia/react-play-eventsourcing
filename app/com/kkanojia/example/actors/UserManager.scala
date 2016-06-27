@@ -1,13 +1,14 @@
-package com.kkanojia.rpe.actors
+package com.kkanojia.example.actors
 
 import scala.collection._
 
 import akka.actor.{ActorRef, Props}
-import com.kkanojia.rpe.utils.exceptions.UserPresentException
+import com.kkanojia.example.utils.exceptions.UserPresentException
 import com.rbmhtechnology.eventuate.EventsourcedView
 
 object UserManager{
 
+  //Command
   case class RetrieveUser(email: String)
 
   val ID = "um_id_dd782f9d"
@@ -33,25 +34,21 @@ class UserManager(override val id: String,
 
     case RetrieveUser(email: String) =>
       usersInSystem.get(email) match {
-        case Some(id) =>
-          getUserActor(id.toString) forward GetUser
-
+        case Some(userId) => getUserActor(userId.toString) forward GetUser
         case None => sender() ! UserRetrievalFailure
       }
 
   }
 
   override def onEvent: Receive = {
-
-    case UserCreated(user) =>
-      usersInSystem(user.email) = user.id
+    case UserCreated(user) => usersInSystem(user.email) = user.id
   }
 
   private def getUserActor(userId: String) : ActorRef =  {
     val name = s"user_$userId"
     context.child(name) match {
       case Some(actorRef) => actorRef
-      case None => context.actorOf(Props(new UserActor(userId, Some(userId), eventLog)), name)
+      case None => context.actorOf(Props(new UserActor(userId, Some(userId), eventLog, Some(id))), name)
     }
   }
 

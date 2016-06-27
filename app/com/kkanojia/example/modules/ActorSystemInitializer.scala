@@ -1,8 +1,8 @@
-package com.kkanojia.rpe.modules
+package com.kkanojia.example.modules
 
 import akka.actor.{ActorSystem, Props}
 import com.google.inject.{Inject, Singleton}
-import com.kkanojia.rpe.actors.{CumulativeTradeViewActor, UserManager}
+import com.kkanojia.example.actors.{CumulativeTradeViewActor, UserManager}
 import com.rbmhtechnology.eventuate.ReplicationEndpoint
 import com.rbmhtechnology.eventuate.log.leveldb.LeveldbEventLog
 

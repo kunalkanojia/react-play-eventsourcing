@@ -1,10 +1,10 @@
-package com.kkanojia.rpe.actors
+package com.kkanojia.example.actors
 
 import scala.util.{Failure, Success}
 
 import akka.actor.ActorRef
-import com.kkanojia.rpe.actors.TradeActor._
-import com.kkanojia.rpe.models.Trade
+import com.kkanojia.example.models.Trade
+import TradeActor._
 import com.rbmhtechnology.eventuate.EventsourcedActor
 
 object TradeActor {

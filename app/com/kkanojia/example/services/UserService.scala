@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.services
+package com.kkanojia.example.services
 
 import javax.inject.Inject
 import scala.concurrent.duration._
@@ -7,10 +7,10 @@ import scala.concurrent.{Await, ExecutionContext, Future}
 import akka.actor.ActorSystem
 import akka.pattern.ask
 import akka.util.Timeout
-import com.kkanojia.rpe.actors.UserActor.{CreateUser, UserCreationFailed, UserCreationSuccess, UserRetrievalSuccess}
-import com.kkanojia.rpe.actors.UserManager
-import com.kkanojia.rpe.actors.UserManager.RetrieveUser
-import com.kkanojia.rpe.models.User
+import com.kkanojia.example.actors.{UserActor, UserManager}
+import UserActor.{CreateUser, UserCreationFailed, UserCreationSuccess, UserRetrievalSuccess}
+import com.kkanojia.example.models.User
+import UserManager.RetrieveUser
 
 class UserService @Inject()(system: ActorSystem)(implicit ec: ExecutionContext) {
 

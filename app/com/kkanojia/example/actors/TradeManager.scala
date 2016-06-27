@@ -1,10 +1,10 @@
-package com.kkanojia.rpe.actors
+package com.kkanojia.example.actors
 
 import java.util.UUID
 import scala.collection.mutable
 
 import akka.actor.{ActorRef, Props}
-import com.kkanojia.rpe.models.Trade
+import com.kkanojia.example.models.Trade
 import com.rbmhtechnology.eventuate.EventsourcedView
 
 object TradeManager{

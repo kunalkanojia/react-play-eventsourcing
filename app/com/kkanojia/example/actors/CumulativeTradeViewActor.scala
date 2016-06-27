@@ -1,13 +1,13 @@
-package com.kkanojia.rpe.actors
+package com.kkanojia.example.actors
 
 import java.util.UUID
 import scala.collection.immutable.HashSet
 import scala.collection.mutable
 
 import akka.actor.ActorRef
-import com.kkanojia.rpe.actors.CumulativeTradeViewActor.{UnWatchTrades, WatchTrades}
-import com.kkanojia.rpe.actors.TradeActor.{TradeCreated, TradeUpdated}
-import com.kkanojia.rpe.models.Trade
+import com.kkanojia.example.models.Trade
+import CumulativeTradeViewActor.{UnWatchTrades, WatchTrades}
+import TradeActor.{TradeCreated, TradeUpdated}
 import com.rbmhtechnology.eventuate.EventsourcedView
 
 object CumulativeTradeViewActor {

@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.models
+package com.kkanojia.example.models
 
 import java.util.UUID
 

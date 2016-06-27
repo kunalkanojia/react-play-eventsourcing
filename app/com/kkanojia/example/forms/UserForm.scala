@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.forms
+package com.kkanojia.example.forms
 
 import play.api.data.Form
 import play.api.data.Forms._

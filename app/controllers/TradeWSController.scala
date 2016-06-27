@@ -11,8 +11,8 @@ import akka.pattern.ask
 import akka.stream.scaladsl.{Flow, Keep, Sink, Source}
 import akka.stream.{Materializer, OverflowStrategy}
 import akka.util.Timeout
-import com.kkanojia.rpe.actors.CumulativeTradeViewActor.UnWatchTrades
-import com.kkanojia.rpe.actors.{CumulativeTradeViewActor, UserParentActor}
+import com.kkanojia.example.actors.{CumulativeTradeViewActor, UserParentActor}
+import com.kkanojia.example.actors.CumulativeTradeViewActor.UnWatchTrades
 import org.reactivestreams.Publisher
 
 import play.api.libs.json.Json
@@ -36,7 +36,7 @@ class TradeWSController @Inject()(@Named("userParentActor") userParentActor: Act
    * @return a fully realized websocket.
    */
   def ws: WebSocket = WebSocket.acceptOrResult[String, String] {
-    case rh => //if sameOriginCheck(rh) =>
+    case rh if sameOriginCheck(rh) =>
       wsFutureFlow(rh).map { flow =>
         Right(flow)
       }.recover {

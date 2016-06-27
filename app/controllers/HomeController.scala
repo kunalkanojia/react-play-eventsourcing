@@ -3,9 +3,10 @@ package controllers
 import javax.inject._
 import scala.concurrent.{ExecutionContext, Future}
 
-import com.kkanojia.rpe.forms.UserForm._
-import com.kkanojia.rpe.models.User
-import com.kkanojia.rpe.services.UserService
+import com.kkanojia.example.forms.UserForm
+import com.kkanojia.example.models.User
+import com.kkanojia.example.services.UserService
+import UserForm._
 import org.json4s.DefaultFormats
 import org.json4s.jackson.Serialization._
 

@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.utils
+package com.kkanojia.example.utils
 
 object Constants {
 

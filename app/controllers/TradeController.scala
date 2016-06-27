@@ -3,9 +3,11 @@ package controllers
 import javax.inject.Inject
 import scala.concurrent.{ExecutionContext, Future}
 
-import com.kkanojia.rpe.forms.TradeForm._
-import com.kkanojia.rpe.models.User
-import com.kkanojia.rpe.services.{TradeService, UserService}
+import com.kkanojia.example.forms.TradeForm
+import com.kkanojia.example.models.User
+import TradeForm._
+import com.kkanojia.example.services.{TradeService, UserService}
+import com.kkanojia.example.services.TradeService
 import org.json4s.DefaultFormats
 import org.json4s.jackson.Serialization._
 

@@ -1,8 +1,8 @@
 import java.time.Clock
 
 import com.google.inject.AbstractModule
-import com.kkanojia.rpe.actors.{UserParentActor, WSUserActor}
-import com.kkanojia.rpe.modules.ActorSystemInitializer
+import com.kkanojia.example.actors.{UserParentActor, WSUserActor}
+import com.kkanojia.example.modules.ActorSystemInitializer
 
 import play.api.libs.concurrent.AkkaGuiceSupport
 

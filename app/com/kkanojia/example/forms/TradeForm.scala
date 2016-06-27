@@ -1,4 +1,4 @@
-package com.kkanojia.rpe.forms
+package com.kkanojia.example.forms
 
 import org.joda.time.DateTime
 
