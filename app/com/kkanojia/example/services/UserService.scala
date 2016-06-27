@@ -12,9 +12,11 @@ import UserActor.{CreateUser, UserCreationFailed, UserCreationSuccess, UserRetri
 import com.kkanojia.example.models.User
 import UserManager.RetrieveUser
 
+import play.api.Logger
+
 class UserService @Inject()(system: ActorSystem)(implicit ec: ExecutionContext) {
 
-  implicit val timeout = Timeout(15 seconds)
+  implicit val timeout = Timeout(10 seconds)
 
   val userManager = Await.result(system.actorSelection("user/" + UserManager.NAME).resolveOne(), timeout.duration)
 
@@ -24,6 +26,7 @@ class UserService @Inject()(system: ActorSystem)(implicit ec: ExecutionContext) 
       case UserCreationSuccess(createdUser) =>
         Some(createdUser)
       case UserCreationFailed(cause) =>
+        Logger.error(s"Error occurred while creating user ${cause.getMessage}")
         None
     }
   }

@@ -14,11 +14,10 @@ object UserActor {
   case object GetUser
 
   //Response
-  case class UserCreationFailed(cause: Throwable)
-
   case class UserCreationSuccess(user: User)
-  case object UserRetrievalFailure
+  case class UserCreationFailed(cause: Throwable)
   case class UserRetrievalSuccess(user: User)
+  case object UserRetrievalFailure
 
   //Event
   case class UserCreated(user: User)

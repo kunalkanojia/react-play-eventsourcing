@@ -2,7 +2,8 @@ package com.kkanojia.example.actors
 
 import scala.collection._
 
-import akka.actor.{ActorRef, Props}
+import akka.actor.{ActorLogging, ActorRef, Props}
+import akka.event.LoggingReceive
 import com.kkanojia.example.utils.exceptions.UserPresentException
 import com.rbmhtechnology.eventuate.EventsourcedView
 
@@ -17,14 +18,14 @@ object UserManager{
 
 class UserManager(override val id: String,
                   override val aggregateId: Option[String],
-                  override val eventLog: ActorRef) extends EventsourcedView {
+                  override val eventLog: ActorRef) extends EventsourcedView with ActorLogging{
 
   import UserActor._
   import UserManager._
 
-  private val usersInSystem = mutable.Map[String, String]()
+  private val usersInSystem = mutable.Map[String, String]() //email -> UUID
 
-  override def onCommand: Receive = {
+  override def onCommand: Receive = LoggingReceive {
 
     case CreateUser(user) =>
       if(usersInSystem.contains(user.email))

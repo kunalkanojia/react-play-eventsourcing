@@ -17,7 +17,7 @@ class UserManagerSpec(_system: ActorSystem) extends TestKit(_system) with Implic
   with WordSpecLike with MustMatchers with BeforeAndAfterAll {
 
 
-  def this() = this(ActorSystem("UserActorSpec"))
+  def this() = this(ActorSystem("UserManagerSpec"))
 
   val endpoint = ReplicationEndpoint(id => LeveldbEventLog.props(logId = "UserActorSpec"))(_system)
   val eventLog = endpoint.logs(DefaultLogName)

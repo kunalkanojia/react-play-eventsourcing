@@ -19,7 +19,7 @@ object CumulativeTradeViewActor {
   case object UnWatchTrades
 }
 
-class CumulativeTradeViewActor (override val id: String,
+class CumulativeTradeViewActor(override val id: String,
                                override val aggregateId: Option[String],
                                override val eventLog: ActorRef) extends EventsourcedView {
 
