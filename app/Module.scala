@@ -1,7 +1,7 @@
 import java.time.Clock
 
 import com.google.inject.AbstractModule
-import com.kkanojia.example.actors.{UserParentActor, WSUserActor}
+import com.kkanojia.example.actors.{WSUserActor, WSUserParentActor}
 import com.kkanojia.example.modules.ActorSystemInitializer
 
 import play.api.libs.concurrent.AkkaGuiceSupport
@@ -26,7 +26,7 @@ class Module extends AbstractModule with AkkaGuiceSupport {
     bind(classOf[Clock]).toInstance(Clock.systemDefaultZone)
     bind(classOf[ApplicationTimer]).asEagerSingleton()
 
-    bindActor[UserParentActor]("userParentActor")
+    bindActor[WSUserParentActor]("userParentActor")
     bindActorFactory[WSUserActor, WSUserActor.Factory]
   }
 

@@ -11,8 +11,8 @@ import akka.pattern.ask
 import akka.stream.scaladsl.{Flow, Keep, Sink, Source}
 import akka.stream.{Materializer, OverflowStrategy}
 import akka.util.Timeout
+import com.kkanojia.example.actors.{TradeAggregateViewActor, WSUserParentActor}
 import com.kkanojia.example.actors.TradeAggregateViewActor.UnWatchTrades
-import com.kkanojia.example.actors.{TradeAggregateViewActor, UserParentActor}
 import org.reactivestreams.Publisher
 
 import play.api.libs.json.Json
@@ -174,7 +174,7 @@ class TradeWSController @Inject()(@Named("userParentActor") userParentActor: Act
     // Use guice assisted injection to instantiate and configure the child actor.
     val userActorFuture = {
       implicit val timeout = Timeout(100.millis)
-      (userParentActor ? UserParentActor.Create(name, webSocketOut)).mapTo[ActorRef]
+      (userParentActor ? WSUserParentActor.Create(name, webSocketOut)).mapTo[ActorRef]
     }
     userActorFuture
   }

@@ -42,7 +42,7 @@ class TradeServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
 
     "be able to update a specific trade for a user" in {
       //Arrange
-      val user = Await.result(userService.createUser(s"phil@${Random.nextInt(999999)}"), 3 seconds).get
+      val user = Await.result(userService.createUser(s"manny@${Random.nextInt(999999)}"), 3 seconds).get
       val tradeData = TradeFormData(tradeDate = DateTime.now, buySell = "B", assetId = 1, quantity = 100, price = 20.2)
       val originalTrade = Await.result(tradeService.createTrade(user, tradeData), 3 second).get
 
@@ -65,7 +65,7 @@ class TradeServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
 
     "be able to retrieve all trades for a user" in {
       //Arrange
-      val user = Await.result(userService.createUser(s"phil@${Random.nextInt(999999)}"), 3 seconds).get
+      val user = Await.result(userService.createUser(s"mitch@${Random.nextInt(999999)}"), 3 seconds).get
       val tradeData1 = TradeFormData(tradeDate = DateTime.now, buySell = "B", assetId = 1, quantity = 100, price = 20.2)
       val tradeData2 = TradeFormData(tradeDate = DateTime.now, buySell = "S", assetId = 2, quantity = 50, price = 23.2)
       val trade1 = Await.result(tradeService.createTrade(user, tradeData1), 3 second).get
@@ -85,7 +85,7 @@ class TradeServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
 
     "be able to retrieve a particular trade for a user" in {
       //Arrange
-      val user = Await.result(userService.createUser(s"phil@${Random.nextInt(999999)}"), 3 seconds).get
+      val user = Await.result(userService.createUser(s"clare@${Random.nextInt(999999)}"), 3 seconds).get
       val tradeData1 = TradeFormData(tradeDate = DateTime.now, buySell = "B", assetId = 1, quantity = 100, price = 20.2)
       val tradeData2 = TradeFormData(tradeDate = DateTime.now, buySell = "S", assetId = 2, quantity = 50, price = 23.2)
       val trade1 = Await.result(tradeService.createTrade(user, tradeData1), 3 second).get
@@ -105,7 +105,7 @@ class TradeServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
 
     "return `None` when trade is not found" in {
       //Arrange
-      val user = Await.result(userService.createUser(s"phil@${Random.nextInt(999999)}"), 3 seconds).get
+      val user = Await.result(userService.createUser(s"luke@${Random.nextInt(999999)}"), 3 seconds).get
 
       //Act
       val tradePromise = tradeService.retrieveTrade(user, UUID.randomUUID().toString)

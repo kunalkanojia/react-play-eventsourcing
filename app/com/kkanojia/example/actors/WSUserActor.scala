@@ -42,10 +42,10 @@ class WSUserActor @Inject()(@Assisted out: ActorRef,
   }
 }
 
-class UserParentActor @Inject()(childFactory: WSUserActor.Factory)
+class WSUserParentActor @Inject()(childFactory: WSUserActor.Factory)
   extends Actor with InjectedActorSupport with ActorLogging {
 
-  import UserParentActor._
+  import WSUserParentActor._
 
   override def receive: Receive = LoggingReceive {
     case Create(id, out) =>
@@ -54,7 +54,7 @@ class UserParentActor @Inject()(childFactory: WSUserActor.Factory)
   }
 }
 
-object UserParentActor {
+object WSUserParentActor {
 
   case class Create(id: String, out: ActorRef)
 
