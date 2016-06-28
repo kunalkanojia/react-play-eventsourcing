@@ -2,7 +2,7 @@ package com.kkanojia.example.modules
 
 import akka.actor.{ActorSystem, Props}
 import com.google.inject.{Inject, Singleton}
-import com.kkanojia.example.actors.{CumulativeTradeViewActor, UserManager}
+import com.kkanojia.example.actors.{TradeAggregateViewActor, UserManager}
 import com.rbmhtechnology.eventuate.ReplicationEndpoint
 import com.rbmhtechnology.eventuate.log.leveldb.LeveldbEventLog
 
@@ -22,8 +22,8 @@ class ActorSystemInitializer @Inject()(system: ActorSystem) {
   system.actorOf(userManagerProps, UserManager.NAME)
 
   val cumulativeTradeViewProps = Props(
-    new CumulativeTradeViewActor(CumulativeTradeViewActor.ID, Some(CumulativeTradeViewActor.ID), eventLog)
+    new TradeAggregateViewActor(TradeAggregateViewActor.ID, Some(TradeAggregateViewActor.ID), eventLog)
   )
-  system.actorOf(cumulativeTradeViewProps, CumulativeTradeViewActor.NAME)
+  system.actorOf(cumulativeTradeViewProps, TradeAggregateViewActor.NAME)
 
 }

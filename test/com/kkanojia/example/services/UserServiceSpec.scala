@@ -6,19 +6,19 @@ import scala.util.Random
 
 import org.scalatest.concurrent.ScalaFutures
 import org.scalatest.time.{Millis, Seconds, Span}
-import org.scalatestplus.play.{OneAppPerTest, PlaySpec}
+import org.scalatestplus.play.{OneAppPerSuite, PlaySpec}
 
 //TODO Clean database
-class UserServiceSpec extends PlaySpec with OneAppPerTest with ScalaFutures {
+class UserServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
 
   implicit val defaultPatience = PatienceConfig(timeout = Span(5, Seconds), interval = Span(50, Millis))
 
   "A User Service" must {
+    val userService = app.injector.instanceOf[UserService]
 
     "be able to create a user" in {
       //Arrange
       val email = s"john@${Random.nextInt(999999)}"
-      val userService = app.injector.instanceOf[UserService]
 
       //Act
       val userPromise = userService.createUser(email)
@@ -34,22 +34,18 @@ class UserServiceSpec extends PlaySpec with OneAppPerTest with ScalaFutures {
     "be able to retrieve a user" in {
       //Arrange
       val email = s"jane@${Random.nextInt(999999)}"
-      val userService = app.injector.instanceOf[UserService]
       Await.result(userService.createUser(email), 5 seconds)
 
       //Act
       val retrievalPromise = userService.retrieveUser(email)
 
       //Assert
-      whenReady(retrievalPromise){
+      whenReady(retrievalPromise) {
         case Some(retrievedUser) =>
           retrievedUser.email mustBe email
 
         case None => fail
       }
-
     }
-
   }
-
 }

@@ -19,7 +19,7 @@ class UserManagerSpec(_system: ActorSystem) extends TestKit(_system) with Implic
 
   def this() = this(ActorSystem("UserManagerSpec"))
 
-  val endpoint = ReplicationEndpoint(id => LeveldbEventLog.props(logId = "UserActorSpec"))(_system)
+  val endpoint = ReplicationEndpoint(id => LeveldbEventLog.props(logId = "UserManagerSpec"))(_system)
   val eventLog = endpoint.logs(DefaultLogName)
 
   "A User Manager" must {

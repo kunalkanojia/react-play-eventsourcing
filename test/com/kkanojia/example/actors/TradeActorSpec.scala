@@ -16,7 +16,7 @@ class TradeActorSpec(_system: ActorSystem) extends TestKit(_system) with Implici
 
   def this() = this(ActorSystem("TradeActorSpec"))
 
-  val endpoint = ReplicationEndpoint(id => LeveldbEventLog.props(logId = "UserActorSpec"))(_system)
+  val endpoint = ReplicationEndpoint(id => LeveldbEventLog.props(logId = "TradeActorSpec"))(_system)
   val eventLog = endpoint.logs(DefaultLogName)
 
   "A trade actor" must {
@@ -24,7 +24,7 @@ class TradeActorSpec(_system: ActorSystem) extends TestKit(_system) with Implici
     "be able to create a trade when called with `CreateTrade`" in {
       //Arrange
       val trade = Trade(tradeDate = DateTime.now, buySell = "B", assetId = 1, quantity = 100, price = 20.2)
-      val tradeActor = system.actorOf(Props(new TradeActor(trade.id.toString, Some(trade.id.toString), eventLog, "")))
+      val tradeActor = system.actorOf(Props(new TradeActor(trade.id, Some(trade.id), eventLog, "")))
 
       //Act
       tradeActor ! CreateTrade(trade)
@@ -41,7 +41,7 @@ class TradeActorSpec(_system: ActorSystem) extends TestKit(_system) with Implici
     "be able to update a trade when called with `UpdateTrade`" in {
       //Arrange
       val trade = Trade(tradeDate = DateTime.now, buySell = "B", assetId = 1, quantity = 100, price = 20.2)
-      val tradeActor = system.actorOf(Props(new TradeActor(trade.id.toString, Some(trade.id.toString), eventLog, "")))
+      val tradeActor = system.actorOf(Props(new TradeActor(trade.id, Some(trade.id), eventLog, "")))
       tradeActor ! CreateTrade(trade); expectMsgType[CreateTradeSuccess]
 
       //Act

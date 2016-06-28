@@ -62,7 +62,7 @@ class UserActor(override val id: String,
 
     case UserCreated(user) =>
       userOpt = Some(user)
-      val name = s"tm_${user.id.toString}"
+      val name = s"tm_${user.id}"
       context.actorOf(Props(new TradeManager(user.id.toString, Some(user.id.toString), eventLog)), name)
   }
 

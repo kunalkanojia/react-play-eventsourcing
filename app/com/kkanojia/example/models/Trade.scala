@@ -4,7 +4,7 @@ import java.util.UUID
 
 import org.joda.time.DateTime
 
-case class Trade(id: UUID,
+case class Trade(id: String,
                  tradeDate: DateTime,
                  buySell: String,
                  assetId: Int,
@@ -18,6 +18,6 @@ object Trade {
             assetId: Int,
             quantity: Int,
             price: BigDecimal): Trade = {
-    new Trade(UUID.randomUUID(), tradeDate, buySell, assetId, quantity, price)
+    new Trade(UUID.randomUUID().toString, tradeDate, buySell, assetId, quantity, price)
   }
 }

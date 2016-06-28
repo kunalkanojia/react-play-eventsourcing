@@ -8,7 +8,7 @@ import akka.actor._
 import akka.event.LoggingReceive
 import akka.util.Timeout
 import com.google.inject.assistedinject.Assisted
-import CumulativeTradeViewActor.WatchTrades
+import TradeAggregateViewActor.WatchTrades
 import TradeActor.{TradeCreated, TradeUpdated}
 import org.json4s.DefaultFormats
 import org.json4s.ext.{JavaTypesSerializers, JodaTimeSerializers}
@@ -22,7 +22,7 @@ class WSUserActor @Inject()(@Assisted out: ActorRef,
 
   implicit val timeout = Timeout(15 seconds)
   implicit val formats = DefaultFormats ++ JavaTypesSerializers.all ++ JodaTimeSerializers.all
-  val tradeViewActor = context.actorSelection("/user/" + CumulativeTradeViewActor.NAME)
+  val tradeViewActor = context.actorSelection("/user/" + TradeAggregateViewActor.NAME)
 
   override def preStart(): Unit = {
     super.preStart()
@@ -42,10 +42,10 @@ class WSUserActor @Inject()(@Assisted out: ActorRef,
   }
 }
 
-class UserParentActor @Inject()(childFactory: WSUserActor.Factory)
+class WSUserParentActor @Inject()(childFactory: WSUserActor.Factory)
   extends Actor with InjectedActorSupport with ActorLogging {
 
-  import UserParentActor._
+  import WSUserParentActor._
 
   override def receive: Receive = LoggingReceive {
     case Create(id, out) =>
@@ -54,7 +54,7 @@ class UserParentActor @Inject()(childFactory: WSUserActor.Factory)
   }
 }
 
-object UserParentActor {
+object WSUserParentActor {
 
   case class Create(id: String, out: ActorRef)
 

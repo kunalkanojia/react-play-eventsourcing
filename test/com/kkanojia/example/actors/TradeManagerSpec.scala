@@ -94,7 +94,7 @@ class TradeManagerSpec(_system: ActorSystem) extends TestKit(_system) with Impli
       tradeManager ! CreateTrade(trade2); expectMsgType[CreateTradeSuccess]
 
       //Act
-      tradeManager ! FindTrade(trade1.id.toString)
+      tradeManager ! FindTrade(trade1.id)
 
       //Assert
       expectMsgPF(){
