@@ -11,8 +11,8 @@ import akka.pattern.ask
 import akka.stream.scaladsl.{Flow, Keep, Sink, Source}
 import akka.stream.{Materializer, OverflowStrategy}
 import akka.util.Timeout
-import com.kkanojia.example.actors.{CumulativeTradeViewActor, UserParentActor}
-import com.kkanojia.example.actors.CumulativeTradeViewActor.UnWatchTrades
+import com.kkanojia.example.actors.TradeAggregateViewActor.UnWatchTrades
+import com.kkanojia.example.actors.{TradeAggregateViewActor, UserParentActor}
 import org.reactivestreams.Publisher
 
 import play.api.libs.json.Json
@@ -27,7 +27,7 @@ class TradeWSController @Inject()(@Named("userParentActor") userParentActor: Act
   // Use a direct reference to SLF4J
   private val logger = org.slf4j.LoggerFactory.getLogger("controllers.TradeWSController")
 
-  private val tradeViewActor = actorSystem.actorSelection("/user/" + CumulativeTradeViewActor.NAME)
+  private val tradeViewActor = actorSystem.actorSelection("/user/" + TradeAggregateViewActor.NAME)
 
   /**
    * Creates a websocket.  `acceptOrResult` is preferable here because it returns a

@@ -82,7 +82,7 @@ class TradeController @Inject()(
         tradeService.retrieveTrade(user, tradeId).map {
           case Some(trade) =>
             val formData = TradeFormData(trade.tradeDate, trade.buySell, trade.assetId, trade.quantity, trade.price)
-            Ok(views.html.createTrade(webJarAssets, Some(user.email), tradeForm.fill(formData), Some(trade.id.toString)))
+            Ok(views.html.createTrade(webJarAssets, Some(user.email), tradeForm.fill(formData), Some(trade.id)))
 
           case None => Redirect(TradeController.dashboard()).flashing("error" -> "Unable to find trade.")
         }

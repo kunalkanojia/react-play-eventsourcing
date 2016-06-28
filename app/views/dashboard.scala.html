@@ -34,7 +34,7 @@
 
     @trades.map { trade =>
       <tr>
-        <td><a href="@routes.TradeController.edit(trade.id.toString)">@trade.id.toString</a></td>
+        <td><a href="@routes.TradeController.edit(trade.id)">@trade.id</a></td>
         <td> @trade.tradeDate.toString("dd/MM/yyyy")</td>
         <td> @trade.buySell</td>
         <td> @assetsMap.get(trade.assetId).getOrElse("")</td>

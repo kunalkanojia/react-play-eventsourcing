@@ -25,21 +25,21 @@ class TradeManager(override val id: String,
   import TradeActor._
   import TradeManager._
 
-  private val userTrades = mutable.Map[UUID, Trade]()
+  private val userTrades = mutable.Map[String, Trade]()
 
   override def onCommand: Receive = {
 
     case CreateTrade(trade) =>
-      getTradeActor(trade.id.toString) forward CreateTrade(trade)
+      getTradeActor(trade.id) forward CreateTrade(trade)
 
     case RetrieveTrades =>
       sender() ! RetrieveTradesSuccess(userTrades.values.toSeq)
 
     case FindTrade(tradeId: String) =>
-      sender() ! FindTradeSuccess(userTrades.get(UUID.fromString(tradeId)))
+      sender() ! FindTradeSuccess(userTrades.get(tradeId))
 
     case UpdateTrade(trade) =>
-      getTradeActor(trade.id.toString) forward UpdateTrade(trade)
+      getTradeActor(trade.id) forward UpdateTrade(trade)
 
   }
 
