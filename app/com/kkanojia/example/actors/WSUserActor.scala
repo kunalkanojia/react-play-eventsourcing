@@ -1,7 +1,6 @@
 package com.kkanojia.example.actors
 
 import javax.inject._
-import scala.concurrent.Await
 import scala.concurrent.duration._
 
 import akka.actor._

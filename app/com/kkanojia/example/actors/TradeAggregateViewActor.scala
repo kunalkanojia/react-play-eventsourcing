@@ -15,7 +15,6 @@ object TradeAggregateViewActor {
   val NAME = "trade_view_aggregate"
 
   case object WatchTrades
-
   case object UnWatchTrades
 
 }
