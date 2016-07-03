@@ -10,6 +10,10 @@ resolvers += "Eventuate Releases" at "https://dl.bintray.com/rbmhtechnology/mave
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
 
 javaOptions in Test += "-Dconfig.resource=test.conf"
+//Heroku
+herokuAppName in Compile := "play-eventsourcing"
+herokuJdkVersion in Compile := "1.8"
+
 
 val akkaVersion = "2.4.7"
 
