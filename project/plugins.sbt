@@ -13,6 +13,6 @@ addSbtPlugin("com.typesafe.sbt" % "sbt-mocha" % "1.1.0")
 
 addSbtPlugin("org.irundaia.sbt" % "sbt-sassify" % "1.4.2")
 
-addSbtPlugin("com.heroku" % "sbt-heroku" % "0.5.1")
+addSbtPlugin("com.heroku" % "sbt-heroku" % "1.0.1")
 
 

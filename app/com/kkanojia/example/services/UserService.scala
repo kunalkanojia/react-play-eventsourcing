@@ -16,9 +16,9 @@ import play.api.Logger
 
 class UserService @Inject()(system: ActorSystem)(implicit ec: ExecutionContext) {
 
-  implicit val timeout = Timeout(10 seconds)
+  implicit val timeout = Timeout(15 seconds)
 
-  val userManager = Await.result(system.actorSelection("user/" + UserManager.NAME).resolveOne(), timeout.duration)
+  lazy val userManager = Await.result(system.actorSelection("user/" + UserManager.NAME).resolveOne(), timeout.duration)
 
   def createUser(email: String): Future[Option[User]] = {
     val user = User(email)
