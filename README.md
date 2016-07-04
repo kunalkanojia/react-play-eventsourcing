@@ -11,4 +11,4 @@ The application also implements a sample websocket to push all the trade message
 The app is deployed on heroku, you can access it here - [http://play-eventsourcing.herokuapp.com/](http://play-eventsourcing.herokuapp.com/)
 
 
-Find more information here - https://kunalkanojia.github.io/play/framework/eventuate/scala/akka/2016/06/28/event-sourcing-part-1.html
+Find more information read this blog post - [https://kunalkanojia.github.io/blog/event-sourcing-part-1](https://kunalkanojia.github.io/blog/event-sourcing-part-1)
