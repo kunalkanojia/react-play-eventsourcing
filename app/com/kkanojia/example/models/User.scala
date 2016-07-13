@@ -3,9 +3,9 @@ package com.kkanojia.example.models
 import java.util.UUID
 
 case class User(
-                 id: String,
-                 email: String
-               )
+  id: String,
+  email: String
+)
 
 object User {
 

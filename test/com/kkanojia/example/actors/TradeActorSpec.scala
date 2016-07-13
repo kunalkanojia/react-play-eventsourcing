@@ -11,7 +11,7 @@ import org.joda.time.DateTime
 import org.scalatest.{BeforeAndAfterAll, MustMatchers, WordSpecLike}
 
 class TradeActorSpec(_system: ActorSystem) extends TestKit(_system) with ImplicitSender
-  with WordSpecLike with MustMatchers with BeforeAndAfterAll {
+  with WordSpecLike with MustMatchers {
 
 
   def this() = this(ActorSystem("TradeActorSpec"))
