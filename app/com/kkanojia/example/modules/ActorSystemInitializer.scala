@@ -26,7 +26,7 @@ class ActorSystemInitializer @Inject()(system: ActorSystem) {
   system.actorOf(userManagerProps, UserManager.NAME)
 
   val cumulativeTradeViewProps = Props(
-    new TradeAggregateViewActor(TradeAggregateViewActor.ID, Some(TradeAggregateViewActor.ID), eventLog)
+    new TradeAggregateViewActor(TradeAggregateViewActor.ID, eventLog)
   )
   system.actorOf(cumulativeTradeViewProps, TradeAggregateViewActor.NAME)
 

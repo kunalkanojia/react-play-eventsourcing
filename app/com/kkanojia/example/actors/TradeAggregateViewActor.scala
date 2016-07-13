@@ -15,13 +15,14 @@ object TradeAggregateViewActor {
   val NAME = "trade_view_aggregate"
 
   case object WatchTrades
+
   case object UnWatchTrades
 
 }
 
 class TradeAggregateViewActor(override val id: String,
-                              override val aggregateId: Option[String],
-                              override val eventLog: ActorRef) extends EventsourcedView {
+  override val eventLog: ActorRef
+) extends EventsourcedView {
 
   protected[this] var watchers = HashSet.empty[ActorRef]
 

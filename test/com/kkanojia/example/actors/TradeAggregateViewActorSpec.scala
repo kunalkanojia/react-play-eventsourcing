@@ -16,7 +16,7 @@ import org.joda.time.DateTime
 import org.scalatest.{BeforeAndAfterAll, MustMatchers, WordSpecLike}
 
 class TradeAggregateViewActorSpec(_system: ActorSystem) extends TestKit(_system) with ImplicitSender
-  with WordSpecLike with MustMatchers with BeforeAndAfterAll {
+  with WordSpecLike with MustMatchers {
 
 
   def this() = this(ActorSystem("TradeAggregateViewActorSpec"))
@@ -29,7 +29,7 @@ class TradeAggregateViewActorSpec(_system: ActorSystem) extends TestKit(_system)
     "receive all trade create messages and publish it to watchers" in {
       //Arrange
       val id = UUID.randomUUID().toString
-      val aggregateActor = system.actorOf(Props(new TradeAggregateViewActor(id, Some(id), eventLog)))
+      val aggregateActor = system.actorOf(Props(new TradeAggregateViewActor(id, eventLog)))
       val probe = new TestProbe(system)
       val wSUserActor = system.actorOf(Props(new ProbeWrapper(probe)))
       aggregateActor.tell(WatchTrades, wSUserActor)
@@ -48,7 +48,7 @@ class TradeAggregateViewActorSpec(_system: ActorSystem) extends TestKit(_system)
     "receive all trade update messages and publish it to watchers" in {
       //Arrange
       val id = UUID.randomUUID().toString
-      val aggregateActor = system.actorOf(Props(new TradeAggregateViewActor(id, Some(id), eventLog)))
+      val aggregateActor = system.actorOf(Props(new TradeAggregateViewActor(id, eventLog)))
       val probe = new TestProbe(system)
       val wSUserActor = system.actorOf(Props(new ProbeWrapper(probe)))
       aggregateActor.tell(WatchTrades, wSUserActor)

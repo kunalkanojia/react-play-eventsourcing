@@ -1,26 +1,28 @@
 package com.kkanojia.example.actors
 
-import java.util.UUID
 import scala.collection.mutable
 
 import akka.actor.{ActorRef, Props}
 import com.kkanojia.example.models.Trade
 import com.rbmhtechnology.eventuate.EventsourcedView
 
-object TradeManager{
+object TradeManager {
 
   //Command
   case object RetrieveTrades
+
   case class FindTrade(tradeId: String)
 
+  //Replies
   case class RetrieveTradesSuccess(trades: Seq[Trade])
+
   case class FindTradeSuccess(tradeOpt: Option[Trade])
 
 }
 
 class TradeManager(override val id: String,
-                   override val aggregateId: Option[String],
-                   override val eventLog: ActorRef) extends EventsourcedView {
+  override val aggregateId: Option[String],
+  override val eventLog: ActorRef) extends EventsourcedView {
 
   import TradeActor._
   import TradeManager._
@@ -51,7 +53,7 @@ class TradeManager(override val id: String,
       userTrades(trade.id) = trade
   }
 
-  private def getTradeActor(tradeId: String) : ActorRef =  {
+  private def getTradeActor(tradeId: String): ActorRef = {
     val name = s"trade_$tradeId"
     context.child(name) match {
       case Some(actorRef) => actorRef
