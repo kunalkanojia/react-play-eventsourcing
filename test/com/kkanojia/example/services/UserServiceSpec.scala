@@ -36,6 +36,8 @@ class UserServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
       val email = s"jane@${Random.nextInt(999999)}"
       Await.result(userService.createUser(email), 5 seconds)
 
+      Thread.sleep(1000) //FIXME - wait for manager to get updated asynchronously
+
       //Act
       val retrievalPromise = userService.retrieveUser(email)
 
