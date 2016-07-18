@@ -41,7 +41,7 @@ class TradeAggregateViewActorSpec(_system: ActorSystem) extends TestKit(_system)
       tradeActor ! CreateTrade(trade); expectMsgType[CreateTradeSuccess]
 
       //Assert
-      val webSocketUserMessage = probe.receiveOne(500 millis)
+      val webSocketUserMessage = probe.receiveOne(1 second)
       webSocketUserMessage mustBe a [TradeCreated]
     }
 
@@ -59,7 +59,7 @@ class TradeAggregateViewActorSpec(_system: ActorSystem) extends TestKit(_system)
       tradeActor ! UpdateTrade(trade); expectMsgType[UpdateTradeSuccess]
 
       //Assert
-      val webSocketUserMessage = probe.receiveOne(500 millis)
+      val webSocketUserMessage = probe.receiveOne(1 second)
       webSocketUserMessage mustBe a [TradeUpdated]
     }
 

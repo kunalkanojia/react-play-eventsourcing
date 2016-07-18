@@ -71,6 +71,8 @@ class TradeServiceSpec extends PlaySpec with OneAppPerSuite with ScalaFutures {
       val trade1 = Await.result(tradeService.createTrade(user, tradeData1), 3 second).get
       val trade2 = Await.result(tradeService.createTrade(user, tradeData2), 3 second).get
 
+      Thread.sleep(1000) //FIXME - wait for manager to get updated asynchronously
+
       //Act
       val tradesPromise = tradeService.retrieveTrades(user)
 
