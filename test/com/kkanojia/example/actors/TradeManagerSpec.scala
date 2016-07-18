@@ -70,6 +70,8 @@ class TradeManagerSpec(_system: ActorSystem) extends TestKit(_system) with Impli
       tradeManager ! CreateTrade(trade1); expectMsgType[CreateTradeSuccess]
       tradeManager ! CreateTrade(trade2); expectMsgType[CreateTradeSuccess]
 
+      Thread.sleep(1000) //FIXME - wait for manager to get updated asynchronously
+
       //Act
       tradeManager ! RetrieveTrades
 
